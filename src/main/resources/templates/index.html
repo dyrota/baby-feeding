@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login / Signup</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/index.js"></script>
+</head>
+<body>
+<main>
+<div class="container">
+    <h1>Login</h1>
+    <div class="input-field">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required autocomplete="off">
+    </div>
+    <div class="input-field">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required autocomplete="off">
+    </div>
+    <div class="button-row">
+        <button id="login-button">Login</button>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Signup</h1>
+    <div class="input-field">
+        <label for="signup-username">Username:</label>
+        <input type="text" id="signup-username" name="signup-username" required autocomplete="off">
+    </div>
+    <div class="input-field">
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" name="signup-password" required autocomplete="off">
+    </div>
+    <div class="input-field">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="ADMIN">ADMIN</option>
+            <option value="PHYSICIAN">PHYSICIAN</option>
+        </select>
+    </div>
+    <div class="button-row">
+        <button id="signup-button">Signup</button>
+    </div>
+</div>
+</main>
+</body>
+</html>
