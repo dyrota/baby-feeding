@@ -96,9 +96,9 @@ $(document).ready(function() {
         });
 
         if (role === "PHYSICIAN") {
-            backButton.textContent = "Back to Physician Page";
+            backButton.textContent = "Back";
         } else {
-            backButton.textContent = "Back to Patient Page";
+            backButton.textContent = "Back";
         }
 
         document.querySelector('#back-button-container').prepend(backButton);
