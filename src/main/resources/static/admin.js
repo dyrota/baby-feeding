@@ -11,6 +11,7 @@ $(document).ready(function(){
 
     function getAuthHeaderFromToken() {
         let userToken = localStorage.getItem('userToken');
+        // console.log("GET AUTH HEADER" + userToken);
 
         if (userToken) {
             let userData = JSON.parse(userToken);
@@ -107,8 +108,8 @@ $(document).ready(function(){
         row.append($("<td></td>").addClass("start-time").text(new Date(entry.start_time).toLocaleString()));
         row.append($("<td></td>").addClass("end-time").text(new Date(entry.end_time).toLocaleString()));
         row.append($("<td></td>").addClass("duration").text(calculateDuration(entry.start_time, entry.end_time)));
-        row.append($("<td></td>").html('<button class="edit-button" data-id="' + entry.id + '">Edit</button>'));
-        row.append($("<td></td>").html('<button class="delete-button" data-id="' + entry.id + '">Delete</button>'));
+        row.append($("<td></td>").html('<button class="edit-button btn-primary" data-id="' + entry.id + '">Edit</button>'));
+        row.append($("<td></td>").html('<button class="delete-button btn-outline-secondary" data-id="' + entry.id + '">Delete</button>'));
         return row;
     }
 
@@ -145,15 +146,16 @@ $(document).ready(function(){
         let amountOfMilk = row.find(".amount-of-milk").text();
         let startTime = row.find(".start-time").text();
         let endTime = row.find(".end-time").text();
-
+    
         row.empty();
         row.append($("<td></td>").html('<input type="number" class="edit-amount-of-milk" value="' + amountOfMilk + '">'));
         row.append($("<td></td>").html('<input type="text" class="edit-start-time" value="' + startTime + '">'));
         row.append($("<td></td>").html('<input type="text" class="edit-end-time" value="' + endTime + '">'));
-        row.append($("<td></td>").html('<button class="save-button" data-id="' + id + '">Save</button>'));
-        row.append($("<td></td>").html('<button class="cancel-button" data-id="' + id + '">Cancel</button>'));
+        row.append($("<td></td>").html('<input type="text" class="edit-duration" disabled value="' + calculateDuration(startTime, endTime) + '">'));
+        row.append($("<td></td>").html('<button class="save-button btn-primary" data-id="' + id + '">Save</button>'));
+        row.append($("<td></td>").html('<button class="cancel-button btn-outline-secondary" data-id="' + id + '">Cancel</button>'));
     }
-
+    
     function cancelEdit(id) {
         let row = $("tr[data-id='" + id + "']");
         let amountOfMilk = row.find(".edit-amount-of-milk").val();
@@ -165,12 +167,13 @@ $(document).ready(function(){
         row.append($("<td></td>").addClass("start-time").text(startTime));
         row.append($("<td></td>").addClass("end-time").text(endTime));
         row.append($("<td></td>").addClass("duration").text(calculateDuration(startTime, endTime)));
-        row.append($("<td></td>").html('<button class="edit-button" data-id="' + id + '">Edit</button>'));
-        row.append($("<td></td>").html('<button class="delete-button" data-id="' + id + '">Delete</button>'));
+        row.append($("<td></td>").html('<button class="edit-button btn-primary" data-id="' + id + '">Edit</button>'));
+        row.append($("<td></td>").html('<button class="delete-button btn-outline-secondary" data-id="' + id + '">Delete</button>'));
     }
 
     function getAverageDuration(userId, startDate, endDate) {
         let url = "http://localhost:8080/feedingData/" + userId + "/averageDuration";
+        console.log("AVG DURATION UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
@@ -212,6 +215,7 @@ $(document).ready(function(){
     
     function getAverageMilk(userId, startDate, endDate) {
         let url = "http://localhost:8080/feedingData/" + userId + "/averageMilk";
+        console.log("UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
@@ -306,6 +310,7 @@ $(document).ready(function(){
         };
 
         let userId = getUserIdFromToken();
+        console.log("SUBMIT BUTTON USER ID: " + userId);
         if (userId) {
             $.ajax({
                 url: "http://localhost:8080/feedingData/" + userId + "/save",
@@ -324,8 +329,8 @@ $(document).ready(function(){
                     $("#amount-of-milk").val("");
                     startTime = Date.now();
 
-                    getAverageDuration(1);
-                    getAverageMilk(1);
+                    getAverageDuration(userId);
+                    getAverageMilk(userId);
                 },
                 error: function(error) {
                     $("#response").text("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);

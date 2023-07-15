@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feeding Data Entry</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/physician.js"></script>
+</head>
+<body>
+<script>
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    let userId = userData.userId;
+    let username = userData.username;
+    let role = userData.role;
+</script>
+<nav class="navbar fixed-top custom-nav">
+    <span class="navbar-brand mb-0 h1">Baby Feeding Tracker</span>
+    <button onclick="window.location.href='account.html'" class="btn btn-primary ml-auto">Account</button>
+</nav>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="my-4">
+                <div class="d-flex justify-content-center">
+                    <div class="mr-2 ml-2">
+                        <label for="user-id">Patient ID</label>
+                        <div class="input-group">
+                            <input type="text" id="user-id" required class="form-control">
+                            <button id="submit-button" class="btn btn-primary ml-2">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <h2>Feeding Data</h2>
+                <table id="feeding-data-table" class="table">
+                    <thead>
+                    <tr>
+                        <th>Amount of Milk</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Duration</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6 my-4">
+            <h2>Average Milk Amount</h2>
+            <canvas id="average-milk-chart"></canvas>
+        </div>
+        <div class="col-lg-6 my-4">
+            <h2>Average Duration</h2>
+            <canvas id="average-duration-chart"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="date-filter my-4">
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date" class="form-control">
+                </div>
+                <button id="filter-button" class="btn btn-primary mt-2">Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#user-id').val(userId);
+</script>
+</body>
+</html>

@@ -14,8 +14,18 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.status === "success") {
                     storeUserToken(response.userId, username, password, response.role);
-                    alert("Authentication successful. You will be redirected to user.html.");
-                    window.location.href = 'user.html';
+                    
+
+                    // Redirect based on role
+                    if (response.role === "ADMIN") {
+                        alert("Authentication successful. You will be redirected to admin.html.");
+                        window.location.href = 'admin.html';
+                    } else if (response.role === "PHYSICIAN") {
+                        alert("Authentication successful. You will be redirected to physician.html.");
+                        window.location.href = 'physician.html';
+                    } else {
+                        alert("Error: Unknown role");
+                    }
                 } else {
                     alert("Error: " + response.message);
                 }
@@ -41,8 +51,16 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.status === "success") {
-                    alert("Signup successful. You will be redirected to user.html.");
-                    window.location.href = 'user.html';
+                    // Redirect based on role
+                    if (role === "ADMIN") {
+                        alert("Signup successful. You will be redirected to admin.html.");
+                        window.location.href = 'admin.html';
+                    } else if (role === "PHYSICIAN") {
+                        alert("Signup successful. You will be redirected to physician.html.");
+                        window.location.href = 'physician.html';
+                    } else {
+                        alert("Error: Unknown role");
+                    }
                 } else {
                     alert("Error: " + response.message);
                 }
@@ -52,21 +70,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    function handleAuthResponse(response) {
-        if (response.status === "success") {
-            // Store the user data in localStorage
-            localStorage.setItem('userData', JSON.stringify(response));
-    
-            alert("Authentication successful. You will be redirected to user.html.");
-    
-            // Redirect to user.html
-            window.location.href = 'user.html';
-        } else {
-            alert("Error: " + response.message);
-        }
-    }
-    
 
     function storeUserToken(userId, username, password, role) {
         // Store the user data in localStorage or sessionStorage
@@ -86,5 +89,15 @@ $(document).ready(function() {
 
     $("#signup-button").click(function() {
         signup();
+    });
+
+    $("#go-to-signup").click(function() {
+        $("#login-section").hide();
+        $("#signup-section").show();
+    });
+
+    $("#go-to-login").click(function() {
+        $("#signup-section").hide();
+        $("#login-section").show();
     });
 });
