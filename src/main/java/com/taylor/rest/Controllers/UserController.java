@@ -88,11 +88,18 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PutMapping(value = "/update/{id}")
     public String updateUser(@PathVariable long id, @RequestBody UserData userData) {
         UserData updatedUserData = userDataRepo.findById(id).get();
         updatedUserData.setUsername(userData.getUsername());
-        updatedUserData.setPassword(userData.getPassword());
+
+        // Encode the new password before setting it
+        String encodedPassword = passwordEncoder.encode(userData.getPassword());
+        updatedUserData.setPassword(encodedPassword);
+
         updatedUserData.setRole(userData.getRole());
         userDataRepo.save(updatedUserData);
         return "{\"message\":\"User data updated\", \"id\":" + id + "}";
