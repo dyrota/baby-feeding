@@ -54,6 +54,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider())
                 .authorizeRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/userData/login", "/userData/save").permitAll()
                         .requestMatchers(HttpMethod.GET, "/feedingData/{userId}/averageDuration",
                                 "/feedingData/{userId}/averageMilk",
