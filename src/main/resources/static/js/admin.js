@@ -193,6 +193,8 @@ $(document).ready(function(){
                 }
     
                 response.dates.sort();
+
+                let durationInSeconds = response.durations.map(duration => duration / 1000);
     
                 let chart = new Chart(ctx, {
                     type: 'line',
@@ -200,7 +202,7 @@ $(document).ready(function(){
                         labels: response.dates,
                         datasets: [{
                             label: 'Average Duration (seconds)',
-                            data: response.durations,
+                            data: durationInSeconds,
                             borderColor: '#5db8fc',
                             backgroundColor: '#0279d4',
                         }]
@@ -286,8 +288,8 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     loadFeedingData();
-                    getAverageDuration(1);
-                    getAverageMilk(1);
+                    getAverageDuration(userId);
+                    getAverageMilk(userId);
                 },
                 error: function(error) {
                     $("#response").text("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);

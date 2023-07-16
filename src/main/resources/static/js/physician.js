@@ -38,6 +38,27 @@ $(document).ready(function(){
         return null;
     }
 
+    function getUserIdFromToken() {
+        let userToken = localStorage.getItem('userToken');
+        console.log('userToken:', userToken);
+    
+        if (userToken) {
+            try {
+                let userData = JSON.parse(userToken);
+                console.log('userData:', userData);
+                if (userData && userData.userId) {
+                    console.log('userId:', userData.userId);
+                    return userData.userId;
+                }
+            } catch (error) {
+                console.error('Error parsing userToken:', error);
+            }
+        }
+    
+        alert('User not logged in');
+        return null;
+    }
+
     function loadFeedingData(userId) {
         console.log("LOADING FEEDING DATA");
         let url = `http://localhost:8080/feedingData/${userId}`;
