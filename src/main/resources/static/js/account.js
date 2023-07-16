@@ -43,7 +43,7 @@ $(document).ready(function() {
             userData.password = newPassword;
 
             $.ajax({
-                url: `http://localhost:8080/userData/update/${userData.userId}`,
+                url: `/userData/update/${userData.userId}`,
                 type: "PUT",
                 dataType: 'json',
                 contentType: 'application/json',

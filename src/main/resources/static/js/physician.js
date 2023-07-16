@@ -61,7 +61,7 @@ $(document).ready(function(){
 
     function loadFeedingData(userId) {
         console.log("LOADING FEEDING DATA");
-        let url = `http://localhost:8080/feedingData/${userId}`;
+        let url = `/feedingData/${userId}`;
         if (userId) {
             $.ajax({
                 url: url,
@@ -109,7 +109,7 @@ $(document).ready(function(){
     }
 
     function getAverageDuration(userId, startDate, endDate) {
-        let url = "http://localhost:8080/feedingData/" + userId + "/averageDuration";
+        let url = "/feedingData/" + userId + "/averageDuration";
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
@@ -150,7 +150,7 @@ $(document).ready(function(){
     }
 
     function getAverageMilk(userId, startDate, endDate) {
-        let url = "http://localhost:8080/feedingData/" + userId + "/averageMilk";
+        let url = "/feedingData/" + userId + "/averageMilk";
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
