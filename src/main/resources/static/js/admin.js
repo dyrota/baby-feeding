@@ -11,7 +11,6 @@ $(document).ready(function(){
 
     function getAuthHeaderFromToken() {
         let userToken = localStorage.getItem('userToken');
-        // console.log("GET AUTH HEADER" + userToken);
 
         if (userToken) {
             let userData = JSON.parse(userToken);
@@ -77,7 +76,7 @@ $(document).ready(function(){
         let userId = getUserIdFromToken();
         if (userId) {
             $.ajax({
-                url: "http://localhost:8080/feedingData/" + userId,
+                url: "/feedingData/" + userId,
                 type: "GET",
                 dataType: 'json',
                 beforeSend: function(xhr) {
@@ -126,7 +125,7 @@ $(document).ready(function(){
         let userId = getUserIdFromToken();
         if (userId) {
             $.ajax({
-                url: "http://localhost:8080/feedingData/" + userId + "/delete/" + id,
+                url: "/feedingData/" + userId + "/delete/" + id,
                 type: "DELETE",
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader('Authorization', getAuthHeaderFromToken());
@@ -172,7 +171,7 @@ $(document).ready(function(){
     }
 
     function getAverageDuration(userId, startDate, endDate) {
-        let url = "http://localhost:8080/feedingData/" + userId + "/averageDuration";
+        let url = "/feedingData/" + userId + "/averageDuration";
         console.log("AVG DURATION UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
@@ -216,7 +215,7 @@ $(document).ready(function(){
     }
     
     function getAverageMilk(userId, startDate, endDate) {
-        let url = "http://localhost:8080/feedingData/" + userId + "/averageMilk";
+        let url = "/feedingData/" + userId + "/averageMilk";
         console.log("UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
@@ -276,7 +275,7 @@ $(document).ready(function(){
         let userId = getUserIdFromToken();
         if (userId) {
             $.ajax({
-                url: "http://localhost:8080/feedingData/" + userId + "/update/" + id,
+                url: "/feedingData/" + userId + "/update/" + id,
                 type: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
@@ -315,7 +314,7 @@ $(document).ready(function(){
         console.log("SUBMIT BUTTON USER ID: " + userId);
         if (userId) {
             $.ajax({
-                url: "http://localhost:8080/feedingData/" + userId + "/save",
+                url: "/feedingData/" + userId + "/save",
                 type: "POST",
                 headers: {
                     'Content-Type': 'application/json'
