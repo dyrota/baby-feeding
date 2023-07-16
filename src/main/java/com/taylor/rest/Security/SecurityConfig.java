@@ -54,12 +54,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider())
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/userData/login", "/userData/save").permitAll()
                         .requestMatchers(HttpMethod.GET, "/feedingData/{userId}/averageDuration",
                                 "/feedingData/{userId}/averageMilk",
                                 "/feedingData/{userId}").hasAnyRole("ADMIN", "PHYSICIAN")
+                        .requestMatchers(HttpMethod.POST, "/userData/login", "/userData/save").permitAll()
                         .requestMatchers("/userData/**", "/feedingData/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(withDefaults())
@@ -67,4 +67,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }
