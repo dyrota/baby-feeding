@@ -4,7 +4,7 @@ $(document).ready(function() {
         let password = $("#password").val();
     
         $.ajax({
-            url: "http://localhost:8080/userData/login",
+            url: "/userData/login",
             type: "POST",
             data: JSON.stringify({ username: username, password: password }),
             contentType: "application/json",
@@ -42,7 +42,7 @@ $(document).ready(function() {
         let role = $("#role").val();
 
         $.ajax({
-            url: "http://localhost:8080/userData/save",
+            url: "/userData/save",
             type: "POST",
             data: JSON.stringify({ username: username, password: password, role: role }),
             contentType: "application/json",
