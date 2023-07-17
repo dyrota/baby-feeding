@@ -2,9 +2,9 @@ $(document).ready(function(){
     let userId;
     
     $("#submit-button").click(function() {
-        console.log("USER ID");
+        // console.log("USER ID");
         userId = $("#user-id").val();
-        console.log(userId);
+        // console.log(userId);
 
         if (userId) {
             loadFeedingData(userId);
@@ -14,11 +14,11 @@ $(document).ready(function(){
     });
 
     $("#filter-button").click(function() {
-        console.log("FILTERING");
+        // console.log("FILTERING");
         let startDate = $("#start-date").val();
         let endDate = $("#end-date").val();
-        console.log(startDate);
-        console.log(endDate);
+        // console.log(startDate);
+        // console.log(endDate);
 
         if (userId) {
             getAverageDuration(userId, startDate, endDate);
@@ -32,7 +32,7 @@ $(document).ready(function(){
         if (userToken) {
             let userData = JSON.parse(userToken);
             let response = 'Basic ' + btoa(userData.username + ':' + userData.password);
-            console.log(response);
+            // console.log(response);
             return response;
         }
         return null;
@@ -40,14 +40,14 @@ $(document).ready(function(){
 
     function getUserIdFromToken() {
         let userToken = localStorage.getItem('userToken');
-        console.log('userToken:', userToken);
+        // console.log('userToken:', userToken);
     
         if (userToken) {
             try {
                 let userData = JSON.parse(userToken);
-                console.log('userData:', userData);
+                // console.log('userData:', userData);
                 if (userData && userData.userId) {
-                    console.log('userId:', userData.userId);
+                    // console.log('userId:', userData.userId);
                     return userData.userId;
                 }
             } catch (error) {
@@ -60,7 +60,7 @@ $(document).ready(function(){
     }
 
     function loadFeedingData(userId) {
-        console.log("LOADING FEEDING DATA");
+        // console.log("LOADING FEEDING DATA");
         let url = `/feedingData/${userId}`;
         if (userId) {
             $.ajax({
@@ -71,7 +71,7 @@ $(document).ready(function(){
                     xhr.setRequestHeader('Authorization', getAuthHeaderFromToken());
                 },
                 success: function(response) {
-                    console.log("IT WORKED");
+                    // console.log("IT WORKED");
                     let tableBody = $("#feeding-data-table tbody");
                     tableBody.empty();
                     response.reverse();
@@ -83,7 +83,7 @@ $(document).ready(function(){
                     }
                 },
                 error: function(error) {
-                    console.log("IT FAILED " + error);
+                    // console.log("IT FAILED " + error);
                     $("#response").text("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
                 }
             });

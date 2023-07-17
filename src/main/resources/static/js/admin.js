@@ -15,7 +15,7 @@ $(document).ready(function(){
         if (userToken) {
             let userData = JSON.parse(userToken);
             let response = 'Basic ' + btoa(userData.username + ':' + userData.password);
-            console.log(response);
+            // console.log(response);
             return response;
         }
         return null;
@@ -23,14 +23,14 @@ $(document).ready(function(){
 
     function getUserIdFromToken() {
         let userToken = localStorage.getItem('userToken');
-        console.log('userToken:', userToken);
+        // console.log('userToken:', userToken);
     
         if (userToken) {
             try {
                 let userData = JSON.parse(userToken);
-                console.log('userData:', userData);
+                // console.log('userData:', userData);
                 if (userData && userData.userId) {
-                    console.log('userId:', userData.userId);
+                    // console.log('userId:', userData.userId);
                     return userData.userId;
                 }
             } catch (error) {
@@ -83,7 +83,7 @@ $(document).ready(function(){
                     xhr.setRequestHeader('Authorization', getAuthHeaderFromToken());
                 },
                 success: function(response) {
-                    console.log("LOADING FEEDING DATA");
+                    // console.log("LOADING FEEDING DATA");
                     let tableBody = $("#feeding-data-table tbody");
                     tableBody.empty();
                     response.reverse();
@@ -172,7 +172,7 @@ $(document).ready(function(){
 
     function getAverageDuration(userId, startDate, endDate) {
         let url = "/feedingData/" + userId + "/averageDuration";
-        console.log("AVG DURATION UserID: " + userId);
+        // console.log("AVG DURATION UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
@@ -216,7 +216,7 @@ $(document).ready(function(){
     
     function getAverageMilk(userId, startDate, endDate) {
         let url = "/feedingData/" + userId + "/averageMilk";
-        console.log("UserID: " + userId);
+        // console.log("UserID: " + userId);
         if (startDate && endDate) {
             url += `?start=${new Date(startDate).toISOString()}&end=${new Date(endDate).toISOString()}`;
         }
@@ -311,7 +311,7 @@ $(document).ready(function(){
         };
 
         let userId = getUserIdFromToken();
-        console.log("SUBMIT BUTTON USER ID: " + userId);
+        // console.log("SUBMIT BUTTON USER ID: " + userId);
         if (userId) {
             $.ajax({
                 url: "/feedingData/" + userId + "/save",
@@ -341,11 +341,11 @@ $(document).ready(function(){
     });
 
     $("#filter-button").click(function() {
-        console.log("FILTERING");
+        // console.log("FILTERING");
         let startDate = $("#start-date").val();
         let endDate = $("#end-date").val();
-        console.log(startDate);
-        console.log(endDate);
+        // console.log(startDate);
+        // console.log(endDate);
 
         let userId = getUserIdFromToken();
         if (userId) {

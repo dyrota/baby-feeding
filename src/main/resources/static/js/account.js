@@ -8,7 +8,7 @@ $(document).ready(function() {
         if (userToken) {
             let userData = JSON.parse(userToken);
             let response = 'Basic ' + btoa(userData.username + ':' + userData.password);
-            console.log(response);
+            // console.log(response);
             return response;
         }
         return null;
@@ -16,14 +16,14 @@ $(document).ready(function() {
 
     function getUserIdFromToken() {
         let userToken = localStorage.getItem('userToken');
-        console.log('userToken:', userToken);
+        // console.log('userToken:', userToken);
 
         if (userToken) {
             try {
                 let userData = JSON.parse(userToken);
-                console.log('userData:', userData);
+                // console.log('userData:', userData);
                 if (userData && userData.userId) {
-                    console.log('userId:', userData.userId);
+                    // console.log('userId:', userData.userId);
                     return userData.userId;
                 }
             } catch (error) {
@@ -54,20 +54,20 @@ $(document).ready(function() {
                 success: function(response) {
                     // Update the user token in the local storage with the new password
                     localStorage.setItem('userData', JSON.stringify(userData));
-                    alert("User data updated successfully");
+                    // alert("User data updated successfully");
                 },
                 error: function(error) {
-                    alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
+                    // alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
                 }
             });
         } else {
-            alert("Please enter your new password.");
+            // alert("Please enter your new password.");
         }
     });
 
     $("#logout-button").click(function() {
         // Clear user data from local storage
-        console.log("REMOVING USER DATA TOKENS");
+        // console.log("REMOVING USER DATA TOKENS");
         localStorage.removeItem('userData');
         localStorage.removeItem('userToken');
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
     if (userData) {
 
         let role = userData.role;
-        console.log(role);
+        // console.log(role);
 
         let backButton = document.createElement("button");
         backButton.classList.add("btn");

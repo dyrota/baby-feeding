@@ -18,20 +18,20 @@ $(document).ready(function() {
 
                     // Redirect based on role
                     if (response.role === "ADMIN") {
-                        alert("Authentication successful. You will be redirected to admin.html.");
+                        // alert("Authentication successful. You will be redirected to admin.html.");
                         window.location.href = 'admin.html';
                     } else if (response.role === "PHYSICIAN") {
-                        alert("Authentication successful. You will be redirected to physician.html.");
+                        // alert("Authentication successful. You will be redirected to physician.html.");
                         window.location.href = 'physician.html';
                     } else {
-                        alert("Error: Unknown role");
+                        // alert("Error: Unknown role");
                     }
                 } else {
-                    alert("Error: " + response.message);
+                    // alert("Error: " + response.message);
                 }
             },
             error: function(error) {
-                alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
+                // alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
             }
         });
     }
@@ -53,20 +53,20 @@ $(document).ready(function() {
                 if (response.status === "success") {
                     // Redirect based on role
                     if (role === "ADMIN") {
-                        alert("Signup successful. You will be redirected to admin.html.");
+                        // alert("Signup successful. You will be redirected to admin.html.");
                         window.location.href = 'admin.html';
                     } else if (role === "PHYSICIAN") {
-                        alert("Signup successful. You will be redirected to physician.html.");
+                        // alert("Signup successful. You will be redirected to physician.html.");
                         window.location.href = 'physician.html';
                     } else {
-                        alert("Error: Unknown role");
+                        // alert("Error: Unknown role");
                     }
                 } else {
-                    alert("Error: " + response.message);
+                    // alert("Error: " + response.message);
                 }
             },
             error: function(error) {
-                alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
+                // alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
             }
         });
     }
