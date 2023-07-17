@@ -50,7 +50,7 @@ $(document).ready(function() {
                 withCredentials: true
             },
             success: function(response) {
-                console.log("RESPONSE " + response);
+                console.log("RESPONSE " + response.status);
                 if (response.status === "success") {
                     // Redirect based on role
                     if (role === "ADMIN") {
