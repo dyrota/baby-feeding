@@ -1,4 +1,4 @@
-## Baby Feeding Tracking
+## Baby Feeding Tracker
 
 This project provides a RESTful API for easily and accurately tracking the feeding data on infants, such as frequency, duration, and amount.
 
@@ -7,7 +7,7 @@ This project provides a RESTful API for easily and accurately tracking the feedi
 - "ADMIN" users are authorized to create, edit or delete feeding data for their account.
 - "PHYSICIANS" users are authorized to access the feeding data of specific users by their patient ID.
 - Information such as average duration each milking session takes place and the average amount consumed are displayed in charts across a user specified period. By default, data across all time is displayed.
-- Both types of users are able to change their passwords using 
+- Both types of users are able to change their passwords on the accounts page.
 
 ## Stack
 - **Frontend:** Bootstrap + jQuery

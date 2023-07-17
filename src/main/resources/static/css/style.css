@@ -51,3 +51,8 @@ body, .main-content {
   min-width: 50px;
 }
 
+/* .centered-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+} */
