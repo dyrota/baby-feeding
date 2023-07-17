@@ -50,6 +50,7 @@ $(document).ready(function() {
                 withCredentials: true
             },
             success: function(response) {
+                console.log("RESPONSE " + response);
                 if (response.status === "success") {
                     // Redirect based on role
                     if (role === "ADMIN") {
@@ -66,7 +67,7 @@ $(document).ready(function() {
                 }
             },
             error: function(error) {
-                // alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
+                alert("Error: " + error.status + " " + error.statusText + "\n" + error.responseText);
             }
         });
     }
