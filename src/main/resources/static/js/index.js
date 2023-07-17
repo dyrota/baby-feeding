@@ -59,10 +59,10 @@ $(document).ready(function() {
                         // alert("Signup successful. You will be redirected to physician.html.");
                         window.location.href = 'physician.html';
                     } else {
-                        // alert("Error: Unknown role");
+                        alert("Error: Unknown role");
                     }
                 } else {
-                    // alert("Error: " + response.message);
+                    alert("Error: " + response.message);
                 }
             },
             error: function(error) {
