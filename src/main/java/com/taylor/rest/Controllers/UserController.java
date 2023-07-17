@@ -79,7 +79,7 @@ public class UserController {
         userData.setPassword(hashedPassword);
         UserData savedUser = userDataRepo.save(userData);
 
-        response.put("status", "success"); // Added this line
+        response.put("status", "success");
         response.put("message", "User data saved");
         response.put("userId", savedUser.getId());
         response.put("username", savedUser.getUsername());
